@@ -68,7 +68,7 @@ export default function Hero() {
         </div>
 
         {/* Right Content - Avatar */}
-        <div className="flex justify-center lg:justify-end relative z-10">
+        <div className="flex justify-center lg:justify-center relative z-10 lg:-translate-x-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -78,13 +78,15 @@ export default function Hero() {
             {/* Glow effect behind */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#5AB4C8]/10 to-blue-500/10 rounded-full blur-[80px] -z-10" />
 
-            {/* Circle Container */}
-            <div className="relative w-full h-full rounded-full border-[8px] border-zinc-800/80 overflow-hidden shadow-2xl bg-zinc-900">
-              <img
-                src="/images/avatar_pixar.png"
-                alt="Kiran avatar"
-                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-              />
+            {/* Circle Container with double border effect */}
+            <div className="relative w-full h-full rounded-full p-[2px] bg-gradient-to-tr from-[#5AB4C8]/40 to-transparent shadow-2xl">
+              <div className="w-full h-full rounded-full border-[12px] border-zinc-900 overflow-hidden bg-zinc-900 shadow-inner">
+                <img
+                  src="/images/hero_image.jpg"
+                  alt="Kiran avatar"
+                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
           </motion.div>
         </div>
