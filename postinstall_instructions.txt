@@ -1,0 +1,5 @@
+Post-install instructions:
+
+1) Run `npm install` to install new dependencies added for Tailwind and Framer Motion.
+2) Start the dev server with `npm run dev` and open http://localhost:5173
+3) If Tailwind classes don't appear, ensure `postcss` is running (Vite handles this automatically after install).

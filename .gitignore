@@ -1,0 +1,11 @@
+node_modules/
+dist/
+/.idea
+.vscode/
+.DS_Store
+*.local
+env.local
+npm-debug.log*
+pnpm-lock.yaml
+yarn.lock
+.env
