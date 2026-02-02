@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="container px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         {/* Left Content */}
-        <div className="flex flex-col items-start z-10">
+        <div className="flex flex-col items-start z-10 lg:pl-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
