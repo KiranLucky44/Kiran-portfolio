@@ -29,43 +29,58 @@ const PROJECTS = [
   }
 ]
 
+import { TRANSITIONS, VARIANTS } from '../lib/motion'
+
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 relative border-b border-zinc-800">
+    <section id="projects" className="py-24 relative border-b border-zinc-800">
       <div className="container px-6">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          className="text-center mb-20"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={VARIANTS.revealUp}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <div className="h-1 w-16 bg-[#5AB4C8] mx-auto mt-4 rounded-full" />
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Featured Projects</h2>
+          <div className="h-1.5 w-20 bg-[#5AB4C8] mx-auto rounded-full" />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl mx-auto"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={VARIANTS.staggerContainer(0.15)}
+        >
           {PROJECTS.map((p, idx) => (
             <motion.article
               key={p.title}
-              className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-lg flex flex-col group hover:border-zinc-700 transition-all"
-              whileHover={{ y: -10 }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              variants={VARIANTS.revealUp}
+              whileHover={{
+                y: -6,
+                transition: TRANSITIONS.spring
+              }}
+              className="group relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700/50 hover:shadow-[#5AB4C8]/5 transition-colors duration-500"
             >
               {/* Image Area */}
-              <div className="w-full h-48 relative overflow-hidden bg-zinc-800">
-                <img
+              <div className="w-full h-52 relative overflow-hidden bg-zinc-800">
+                <motion.img
                   src={p.image}
                   alt={p.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: TRANSITIONS.ease }}
+                  className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
 
               {/* Content Area */}
               <div className="p-6 flex flex-col flex-grow">
-                <h3 className="text-xl font-bold text-white mb-3 leading-snug">{p.title}</h3>
+                <div className="flex justify-between items-start mb-3">
+                  <h3 className="text-xl font-bold text-white leading-tight group-hover:text-[#5AB4C8] transition-colors">{p.title}</h3>
+                </div>
+
                 <p className="text-zinc-400 text-sm mb-6 leading-relaxed flex-grow">
                   {p.desc}
                 </p>
@@ -73,26 +88,35 @@ export default function Projects() {
                 {/* Tech Stack Pills */}
                 <div className="flex flex-wrap gap-2 mb-8">
                   {p.tech.map(t => (
-                    <span key={t} className="px-3 py-1 text-xs font-medium text-zinc-300 bg-zinc-800 rounded-full border border-zinc-700/50">
+                    <span key={t} className="px-3 py-1 text-[10px] font-bold tracking-wider uppercase text-zinc-400 bg-zinc-800/50 rounded-lg border border-zinc-700/30 group-hover:border-[#5AB4C8]/20 transition-colors">
                       {t}
                     </span>
                   ))}
                 </div>
 
                 {/* Buttons */}
-                <div className="flex gap-4 mt-auto">
-                  <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-white bg-zinc-800 rounded-lg hover:bg-zinc-700 transition-colors">
+                <div className="flex gap-3 mt-auto">
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-bold text-white bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700 rounded-xl transition-all shadow-lg"
+                  >
                     <FaGithub size={16} /> Code
-                  </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-zinc-950 bg-[#5AB4C8] rounded-lg hover:bg-[#7ACDE1] transition-colors">
-                    <FaExternalLinkAlt size={14} /> Demo
-                  </button>
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-bold text-zinc-950 bg-[#5AB4C8] hover:bg-[#7ACDE1] rounded-xl transition-all shadow-lg shadow-[#5AB4C8]/20"
+                  >
+                    <FaExternalLinkAlt size={14} /> Live
+                  </motion.button>
                 </div>
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
 }
+

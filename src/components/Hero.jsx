@@ -1,19 +1,31 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { FaDownload, FaArrowDown } from 'react-icons/fa'
+import { TRANSITIONS, VARIANTS } from '../lib/motion'
 
 export default function Hero() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-28 pb-20 overflow-hidden border-b border-zinc-800">
+    <section ref={containerRef} className="relative min-h-[90vh] flex items-center pt-28 pb-20 overflow-hidden border-b border-zinc-800">
       <div className="container px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         {/* Left Content */}
-        <div className="flex flex-col items-start z-10 lg:pl-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+        <motion.div
+          initial="initial"
+          animate="animate"
+          variants={VARIANTS.staggerContainer(0.12, 0.2)}
+          className="flex flex-col items-start z-10 lg:pl-12"
+          style={{ y, opacity }}
+        >
+          <motion.div variants={VARIANTS.heroText}>
             {/* "Available for Work" pill */}
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-zinc-800/80 rounded-full border border-zinc-700 mb-8 backdrop-blur-md">
               <span className="relative flex h-2 w-2">
@@ -29,12 +41,7 @@ export default function Hero() {
             </h1>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="mb-8"
-          >
+          <motion.div variants={VARIANTS.heroText} className="mb-8">
             <h2 className="text-2xl md:text-3xl font-semibold leading-relaxed">
               <span className="text-zinc-400">Building Scalable Modern</span> <br />
               <span className="text-[#5AB4C8]">Full Stack Applications</span>
@@ -45,34 +52,33 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-wrap gap-4"
-          >
-            <a
-              className="px-8 py-3 bg-[#5AB4C8] text-zinc-950 rounded-lg font-semibold hover:bg-[#7ACDE1] transition-all hover:scale-105 flex items-center gap-2 shadow-[0_0_20px_rgba(90,180,200,0.3)]"
+          <motion.div variants={VARIANTS.heroText} className="flex flex-wrap gap-4">
+            <motion.a
+              whileHover={{ scale: 1.05, translateY: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-8 py-3 bg-[#5AB4C8] text-zinc-950 rounded-lg font-semibold hover:bg-[#7ACDE1] transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(90,180,200,0.3)]"
               href="/resume.pdf"
               download
             >
               <FaDownload size={14} /> Download CV
-            </a>
-            <a
-              className="px-8 py-3 border border-zinc-700/50 bg-zinc-900/50 text-zinc-300 rounded-lg font-semibold hover:bg-zinc-800 hover:text-white transition-all flex items-center gap-2"
+            </motion.a>
+            <motion.a
+              whileHover={{ backgroundColor: 'rgba(255,255,255,0.05)', translateY: -2 }}
+              className="px-8 py-3 border border-zinc-700/50 bg-zinc-900/50 text-zinc-300 rounded-lg font-semibold hover:text-white transition-all flex items-center gap-2"
               href="#projects"
             >
               Scroll Down <FaArrowDown size={12} />
-            </a>
+            </motion.a>
           </motion.div>
-        </div>
+        </motion.div>
 
         {/* Right Content - Avatar */}
         <div className="flex justify-center lg:justify-center relative z-10 lg:-translate-x-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ ...TRANSITIONS.springGentle, delay: 0.4 }}
+            style={{ y: useTransform(scrollYProgress, [0, 1], [0, 50]) }}
             className="relative w-[350px] h-[350px] md:w-[450px] md:h-[450px]"
           >
             {/* Glow effect behind */}
@@ -81,10 +87,12 @@ export default function Hero() {
             {/* Circle Container with double border effect */}
             <div className="relative w-full h-full rounded-full p-[2px] bg-gradient-to-tr from-[#5AB4C8]/40 to-transparent shadow-2xl">
               <div className="w-full h-full rounded-full border-[12px] border-zinc-900 overflow-hidden bg-zinc-900 shadow-inner">
-                <img
+                <motion.img
+                  whileHover={{ scale: 1.08 }}
+                  transition={{ duration: 0.8, ease: TRANSITIONS.ease }}
                   src="/images/hero_image.jpg"
                   alt="Kiran avatar"
-                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
             </div>
@@ -94,3 +102,4 @@ export default function Hero() {
     </section>
   )
 }
+

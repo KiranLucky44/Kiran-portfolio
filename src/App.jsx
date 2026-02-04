@@ -11,22 +11,32 @@ import Footer from './components/Footer'
 import GlowBackground from './components/GlowBackground'
 import './index.css'
 
+import { motion } from 'framer-motion'
+import { VARIANTS } from './lib/motion'
+
 export default function App() {
   console.log('App.jsx render')
   return (
-    <div>
+    <div className="relative isolate overflow-hidden">
       <Header />
       <GlowBackground />
-      <Hero />
-      <main>
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Certifications />
-        <Contact />
-      </main>
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={VARIANTS.fadeIn}
+      >
+        <Hero />
+        <main>
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <Certifications />
+          <Contact />
+        </main>
+      </motion.div>
       <Footer />
     </div>
   )
 }
+

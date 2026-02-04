@@ -1,12 +1,33 @@
 import React from 'react'
 import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa'
 
+import { motion } from 'framer-motion'
+import { TRANSITIONS, VARIANTS } from '../lib/motion'
+
 export default function Contact() {
   return (
-    <section id="contact" className="py-12 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden bg-zinc-950">
       <div className="container px-6">
-        <h2 className="text-2xl font-bold mb-4">Contact</h2>
-        <div className="card p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={VARIANTS.revealUp}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">Get In Touch</h2>
+          <p className="text-lg text-zinc-400 max-w-2xl mx-auto font-medium">
+            Let's build something <span className="text-[#5AB4C8]">extraordinary</span> together.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={VARIANTS.revealUp}
+          className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 md:p-12 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto"
+        >
           <div>
             <p className="text-zinc-400 mb-6 leading-relaxed">Reach out via email or phone. I'm open to new opportunities and collaborations.</p>
 
@@ -34,7 +55,7 @@ export default function Contact() {
           <div className="flex justify-end">
             <a className="px-5 py-3 bg-white text-black rounded-md font-semibold" href="/resume.pdf" download>Download Resume</a>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

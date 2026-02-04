@@ -49,34 +49,41 @@ const certifications = [
     }
 ]
 
+import { TRANSITIONS, VARIANTS } from '../lib/motion'
+
 export default function Certifications() {
     return (
-        <section id="certifications" className="py-20 relative border-b border-zinc-800">
+        <section id="certifications" className="py-24 relative border-b border-zinc-800 bg-zinc-950">
             <div className="container px-6">
                 <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    className="text-center mb-20"
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={VARIANTS.revealUp}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
                         Certifications <span className="text-[#5AB4C8]">&</span> Achievements
                     </h2>
-                    <p className="text-zinc-400 max-w-2xl mx-auto">
-                        Professional certifications demonstrating expertise in cloud computing, AI/ML, and modern development practices.
+                    <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-8 font-medium">
+                        Professional milestones demonstrating deep expertise in <span className="text-zinc-200">Cloud Architecture</span>, <span className="text-zinc-200">AI/ML</span>, and <span className="text-zinc-200">Modern Engineering</span>.
                     </p>
-                    <div className="h-1 w-20 bg-[#5AB4C8] mx-auto mt-6 rounded-full" />
+                    <div className="h-1.5 w-24 bg-[#5AB4C8] mx-auto rounded-full shadow-[0_0_20px_rgba(90,180,200,0.4)]" />
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    {certifications.map((cert, idx) => (
+                <motion.div
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
+                    initial="initial"
+                    whileInView="animate"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={VARIANTS.staggerContainer(0.12)}
+                >
+                    {certifications.map((cert) => (
                         <motion.div
                             key={cert.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
+                            variants={VARIANTS.revealUp}
                             whileHover={{ y: -5 }}
+                            transition={TRANSITIONS.spring}
                             className={`relative p-6 rounded-2xl border ${cert.border} bg-gradient-to-br ${cert.color} backdrop-blur-sm overflow-hidden group`}
                         >
                             <div className="flex justify-between items-start mb-6">
@@ -103,8 +110,9 @@ export default function Certifications() {
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     )
 }
+

@@ -2,10 +2,20 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { FaBars, FaTimes, FaSun } from 'react-icons/fa'
 
+import { TRANSITIONS } from '../lib/motion'
+import { AnimatePresence } from 'framer-motion'
+
 export default function Header() {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('home')
+  const [scrolled, setScrolled] = useState(false)
   const menuRef = useRef(null)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   useEffect(() => {
     function onKey(e) {
@@ -73,7 +83,7 @@ export default function Header() {
           <motion.div
             layoutId="active-pill"
             className="absolute inset-0 bg-zinc-800 rounded-full -z-10 border border-zinc-700/50"
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={TRANSITIONS.springGentle}
           />
         )}
         {item.label}
@@ -82,9 +92,9 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800 transition-all duration-300">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800 ${scrolled ? 'h-14' : 'h-16'}`}>
       <a href="#main" className="sr-only focus:not-sr-only focus:block p-2">Skip to content</a>
-      <div className="container px-6 h-16 flex items-center justify-between">
+      <div className="container px-6 h-full flex items-center justify-between">
         <motion.div
           className="flex items-center gap-4 cursor-pointer"
           whileHover={{ scale: 1.05 }}
@@ -101,12 +111,8 @@ export default function Header() {
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
-          {/* Theme toggle placeholder */}
-          <button className="p-2 text-zinc-400 hover:text-white transition-colors">
-            <FaSun size={20} />
-          </button>
           <motion.a
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, translateY: -2 }}
             whileTap={{ scale: 0.95 }}
             className="px-6 py-2 bg-[#5AB4C8] text-zinc-950 rounded-lg font-semibold hover:bg-[#7ACDE1] transition-all text-sm shadow-[0_0_15px_rgba(90,180,200,0.3)]"
             href="#contact"
@@ -117,28 +123,40 @@ export default function Header() {
 
         {/* Mobile menu button */}
         <div className="md:hidden">
-          <button aria-controls="mobile-menu" aria-expanded={open} onClick={() => setOpen(!open)} className="p-2 text-zinc-400 hover:text-white transition-colors">
+          <button aria-controls="mobile-menu" aria-expanded={open} onClick={() => setOpen(!open)} className="p-2 text-zinc-400 hover:text-white transition-colors relative z-[60]">
             {open ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile menu panel */}
-      <div id="mobile-menu" role="dialog" aria-modal={open} className={`md:hidden absolute top-16 left-0 w-full bg-zinc-900/95 backdrop-blur-xl border-t border-zinc-800 transition-all duration-300 ${open ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-        <div className="px-6 py-8 flex flex-col gap-4 text-center" ref={menuRef}>
-          {navItems.map(item => (
-            <a
-              key={item.id}
-              className={`text-lg font-medium py-2 ${active === item.id ? 'text-white' : 'text-zinc-400'}`}
-              href={item.href}
-              onClick={() => { setActive(item.id); setOpen(false) }}
-            >
-              {item.label}
-            </a>
-          ))}
-          <a className="mt-4 px-6 py-3 bg-zinc-50 text-zinc-900 rounded-lg font-bold mx-auto max-w-xs block" href="#contact" onClick={() => setOpen(false)}>Contact Me</a>
-        </div>
-      </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            transition={TRANSITIONS.springGentle}
+            id="mobile-menu"
+            className="md:hidden fixed inset-x-4 top-20 bg-zinc-900/95 backdrop-blur-2xl border border-zinc-700/50 rounded-2xl shadow-2xl z-[55] overflow-hidden"
+          >
+            <div className="px-6 py-8 flex flex-col gap-4 text-center" ref={menuRef}>
+              {navItems.map(item => (
+                <a
+                  key={item.id}
+                  className={`text-lg font-medium py-2 rounded-lg hover:bg-zinc-800 transition-colors ${active === item.id ? 'text-[#5AB4C8]' : 'text-zinc-400'}`}
+                  href={item.href}
+                  onClick={() => { setActive(item.id); setOpen(false) }}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <a className="mt-4 px-6 py-3 bg-[#5AB4C8] text-zinc-950 rounded-xl font-bold mx-auto w-full max-w-xs block shadow-lg" href="#contact" onClick={() => setOpen(false)}>Contact Me</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }
+
