@@ -1,77 +1,90 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-import { TRANSITIONS, VARIANTS } from '../lib/motion'
-
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-zinc-950 relative border-b border-zinc-800">
-      <div className="container px-6">
-        <motion.div
-          className="text-center mb-20"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={VARIANTS.revealUp}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">About Me</h2>
-          <div className="h-1.5 w-20 bg-[#5AB4C8] mx-auto rounded-full" />
-        </motion.div>
+    <section id="about" className="py-20 relative overflow-hidden">
+      <div className="container relative z-10 px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
-        <motion.div
-          className="max-w-5xl mx-auto bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/80 rounded-[2.5rem] p-8 md:p-14 shadow-2xl relative overflow-hidden"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={VARIANTS.revealUp}
-        >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-[#5AB4C8]/5 blur-[80px] rounded-full pointer-events-none" />
+          {/* Left Column: Title & Intro */}
+          <div className="lg:col-span-5">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="headline-2 mb-8"
+            >
+              The Story <br />
+              <span className="text-white/40 italic">Behind the Code</span>
+            </motion.h2>
 
-          <div className="text-xl md:text-2xl text-zinc-400 leading-relaxed space-y-8 mb-16 relative z-10">
-            <p>
-              I'm <span className="text-white font-bold tracking-tight">Kiran Kumar</span>, a Software Engineer with <span className="text-[#5AB4C8] font-bold">4 years</span> of experience building robust,
-              scalable systems. My passion lies in bridging the gap between <span className="text-white font-semibold">complex backend logic</span> and <span className="text-white font-semibold">seamless user experiences</span>.
-            </p>
-            <p className="text-lg md:text-xl">
-              Currently, I'm specializing in cloud-native architectures and exploring the frontiers of <span className="text-[#5AB4C8] font-semibold italic">Generative AI</span> to build the next generation of intelligent applications.
-            </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="space-y-6 text-xl text-zinc-400"
+            >
+              <p>
+                I'm <span className="text-white font-bold">Kiran Kumar</span>, a Software Engineer with <span className="text-white font-bold">4 years</span> of experience building robust, scalable systems.
+              </p>
+              <p className="text-lg">
+                My passion lies in bridging the gap between <span className="text-white font-semibold">complex backend logic</span> and <span className="text-white font-semibold">seamless user experiences</span>.
+              </p>
+              <p className="text-lg opacity-60">
+                Currently, I'm specializing in cloud-native architectures and exploring the frontiers of <span className="italic">Generative AI</span> to build the next generation of intelligent applications.
+              </p>
+            </motion.div>
           </div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
-            variants={VARIANTS.staggerContainer(0.1)}
-          >
-            {[
-              { label: 'Years of Experience', value: '4+' },
-              { label: 'Projects Completed', value: '4+' },
-              { label: 'Client Satisfaction', value: '100%' }
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                variants={VARIANTS.revealUp}
-                whileHover={{ y: -5, borderColor: 'rgba(90, 180, 200, 0.4)' }}
-                className="bg-zinc-950/40 border border-zinc-800 rounded-2xl p-8 text-center transition-all duration-300 group"
-              >
-                <div className="text-4xl md:text-5xl font-bold text-[#5AB4C8] mb-3 group-hover:scale-110 transition-transform duration-500">{stat.value}</div>
-                <div className="text-[11px] text-zinc-500 uppercase tracking-[0.2em] font-bold">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+          {/* Right Column: Glass Stats & Details */}
+          <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              className="glass-card md:col-span-2 flex flex-col justify-between"
+            >
+              <div className="flex justify-between items-start mb-12">
+                <div className="text-6xl font-bold text-white tracking-tighter">4+</div>
+                <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] uppercase font-bold tracking-widest text-white/40">Established Experience</div>
+              </div>
+              <p className="text-zinc-500 text-sm">Four years of engineering excellence in high-availability environments.</p>
+            </motion.div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center gap-10 pt-10 border-t border-zinc-800/50">
-            <div className="text-center md:text-left">
-              <span className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Location</span>
-              <span className="text-xl font-bold text-white tracking-tight">New Haven, CT</span>
-            </div>
-            <div className="text-center md:text-right">
-              <span className="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Email</span>
-              <a href="mailto:kirankumarc477@gmail.com" className="text-xl font-bold text-white hover:text-[#5AB4C8] transition-all decoration-[#5AB4C8]/30 underline decoration-2 underline-offset-8 hover:decoration-[#5AB4C8]">
-                kirankumarc477@gmail.com
-              </a>
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="liquid-glass rounded-[2rem] p-8"
+            >
+              <div className="text-3xl font-bold text-white mb-2">4+</div>
+              <div className="text-[10px] uppercase font-bold tracking-widest text-zinc-500">Projects Sculpted</div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -5 }}
+              className="liquid-glass rounded-[2rem] p-8"
+            >
+              <div className="text-3xl font-bold text-white mb-2">100%</div>
+              <div className="text-[10px] uppercase font-bold tracking-widest text-zinc-500">Client Delivery</div>
+            </motion.div>
+
+            <div className="md:col-span-2 mt-4 pt-10 border-t border-white/5 flex flex-wrap gap-12">
+              <div>
+                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-3">Location</span>
+                <span className="text-lg font-medium text-white">New Haven, CT</span>
+              </div>
+              <div>
+                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-3">Email</span>
+                <a href="mailto:kirankumarc477@gmail.com" className="text-lg font-medium text-white hover:text-white/60 transition-colors">
+                  kirankumarc477@gmail.com
+                </a>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
+
+      {/* Background Decorative Glow */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-indigo-500/5 blur-[150px] rounded-full -z-10" />
     </section>
   )
 }

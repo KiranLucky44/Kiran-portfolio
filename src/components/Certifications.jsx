@@ -10,9 +10,7 @@ const certifications = [
         year: '2024',
         category: 'AI/ML',
         icon: FaBrain,
-        color: 'from-purple-500/20 to-indigo-500/5',
-        border: 'border-purple-500/30',
-        text: 'text-purple-400'
+        color: '#8B5CF6' // Outskill/AI color
     },
     {
         id: 2,
@@ -21,9 +19,7 @@ const certifications = [
         year: '2024',
         category: 'Cloud',
         icon: FaMicrosoft,
-        color: 'from-blue-500/20 to-[#5AB4C8]/5',
-        border: 'border-blue-500/30',
-        text: 'text-blue-400'
+        color: '#00A4EF' // Microsoft Blue
     },
     {
         id: 3,
@@ -32,9 +28,7 @@ const certifications = [
         year: '2023',
         category: 'Cloud & Frontend',
         icon: FaAws,
-        color: 'from-orange-500/20 to-amber-500/5',
-        border: 'border-orange-500/30',
-        text: 'text-orange-400'
+        color: '#FF9900' // AWS Orange
     },
     {
         id: 4,
@@ -43,74 +37,82 @@ const certifications = [
         year: '2023',
         category: 'Programming',
         icon: FaCode,
-        color: 'from-emerald-500/20 to-green-500/5',
-        border: 'border-emerald-500/30',
-        text: 'text-emerald-400'
+        color: '#5382a1' // Java Blue (Coffee cup color)
     }
 ]
 
-import { TRANSITIONS, VARIANTS } from '../lib/motion'
-
 export default function Certifications() {
     return (
-        <section id="certifications" className="py-24 relative border-b border-zinc-800 bg-zinc-950">
+        <section id="certifications" className="py-20 relative">
             <div className="container px-6">
                 <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     className="text-center mb-20"
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true, margin: "-100px" }}
-                    variants={VARIANTS.revealUp}
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-                        Certifications <span className="text-[#5AB4C8]">&</span> Achievements
-                    </h2>
-                    <p className="text-lg text-zinc-400 max-w-2xl mx-auto mb-8 font-medium">
-                        Professional milestones demonstrating deep expertise in <span className="text-zinc-200">Cloud Architecture</span>, <span className="text-zinc-200">AI/ML</span>, and <span className="text-zinc-200">Modern Engineering</span>.
+                    <h2 className="headline-2 mb-4">Professional <span className="text-white/40 italic">Accolades</span></h2>
+                    <p className="text-zinc-500 max-w-2xl mx-auto text-lg italic">
+                        Validation of expertise across Cloud Architecture, AI/ML, and Modern Systems Engineering.
                     </p>
-                    <div className="h-1.5 w-24 bg-[#5AB4C8] mx-auto rounded-full shadow-[0_0_20px_rgba(90,180,200,0.4)]" />
                 </motion.div>
 
-                <motion.div
-                    className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto"
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true, margin: "-50px" }}
-                    variants={VARIANTS.staggerContainer(0.12)}
-                >
-                    {certifications.map((cert) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    {certifications.map((cert, idx) => (
                         <motion.div
                             key={cert.id}
-                            variants={VARIANTS.revealUp}
-                            whileHover={{ y: -5 }}
-                            transition={TRANSITIONS.spring}
-                            className={`relative p-6 rounded-2xl border ${cert.border} bg-gradient-to-br ${cert.color} backdrop-blur-sm overflow-hidden group`}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                            whileHover={{ scale: 1.01, borderColor: `${cert.color}40` }}
+                            className="liquid-glass rounded-[2rem] p-10 flex flex-col justify-between group transition-all duration-500"
+                            style={{
+                                boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+                            }}
                         >
-                            <div className="flex justify-between items-start mb-6">
-                                <div className={`p-2 rounded-lg bg-zinc-900/50 border border-zinc-700/50 ${cert.text} flex items-center gap-2`}>
-                                    <cert.icon size={16} />
-                                    <span className="text-xs font-semibold uppercase tracking-wider">{cert.category}</span>
+                            <div className="flex justify-between items-start mb-10">
+                                <div
+                                    className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500"
+                                    style={{
+                                        backgroundColor: `${cert.color}10`,
+                                        color: cert.color,
+                                        boxShadow: `0 0 20px ${cert.color}20`
+                                    }}
+                                >
+                                    <cert.icon size={28} />
                                 </div>
-                                <FaCheckCircle className={`text-zinc-600 group-hover:${cert.text} transition-colors`} size={20} />
+                                <div
+                                    className="text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border"
+                                    style={{
+                                        color: `${cert.color}dd`,
+                                        borderColor: `${cert.color}30`,
+                                        backgroundColor: `${cert.color}08`
+                                    }}
+                                >
+                                    {cert.category}
+                                </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-white mb-8 group-hover:text-white transition-colors">
-                                {cert.title}
-                            </h3>
+                            <div>
+                                <h3 className="text-2xl font-bold text-white mb-8 tracking-tight group-hover:text-white transition-colors">
+                                    {cert.title}
+                                </h3>
 
-                            <div className="flex justify-between items-end border-t border-zinc-700/30 pt-4">
-                                <div>
-                                    <p className="text-xs text-zinc-500 uppercase font-medium mb-1">Issued by</p>
-                                    <p className="text-zinc-300 font-semibold">{cert.issuer}</p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-xs text-zinc-500 uppercase font-medium mb-1">Year</p>
-                                    <p className="text-white font-bold">{cert.year}</p>
+                                <div className="flex items-center justify-between border-t border-white/5 pt-6">
+                                    <div>
+                                        <div className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-1">Issuer</div>
+                                        <div className="text-white font-medium">{cert.issuer}</div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-1">Conferred</div>
+                                        <div className="text-white font-medium">{cert.year}</div>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
-                </motion.div>
+                </div>
             </div>
         </section>
     )

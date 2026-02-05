@@ -7,7 +7,6 @@ import {
   FaLeaf, FaProjectDiagram, FaShip, FaCogs, FaRobot, FaPaperPlane, FaLayerGroup
 } from 'react-icons/fa'
 
-// Using purely FontAwesome (Fa) icons for safety with react-icons@4.11.0
 const SKILL_CATEGORIES = [
   {
     title: 'Languages',
@@ -79,85 +78,52 @@ const SKILL_CATEGORIES = [
   }
 ]
 
-import { TRANSITIONS, VARIANTS } from '../lib/motion'
-
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 relative border-b border-zinc-800 bg-zinc-950">
+    <section id="skills" className="py-20 relative">
       <div className="container px-6">
         <motion.div
-          className="text-center mb-20"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={VARIANTS.revealUp}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 text-center lg:text-left"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4 text-center">Skills & Tools</h2>
-          <div className="h-1.5 w-20 bg-[#5AB4C8] mx-auto rounded-full" />
+          <h2 className="headline-2 mb-4">Mastering the <span className="text-white/40">Continuum</span></h2>
+          <p className="text-zinc-500 max-w-lg text-lg text-center lg:text-left">A curated selection of tools and technologies I use to bring ideas to life.</p>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={VARIANTS.staggerContainer(0.12)}
-        >
-          {SKILL_CATEGORIES.map((category) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {SKILL_CATEGORIES.map((category, idx) => (
             <motion.div
               key={category.title}
-              variants={VARIANTS.revealUp}
-              whileHover={{ y: -5 }}
-              transition={TRANSITIONS.springGentle}
-              className="bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/80 rounded-[2rem] p-6 hover:border-zinc-700/50 hover:bg-zinc-900 transition-all duration-500 group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="glass-card"
             >
-
-              <div className="flex items-center gap-3.5 mb-6">
-                <div className="p-2.5 rounded-xl bg-zinc-800/80 text-[#5AB4C8] group-hover:bg-[#5AB4C8] group-hover:text-zinc-950 transition-all duration-500 shadow-lg">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-10 h-10 rounded-xl liquid-glass flex items-center justify-center text-white/70">
                   <category.icon size={20} />
                 </div>
-                <h3 className="text-xl font-bold text-white tracking-tight">{category.title}</h3>
+                <h3 className="text-xl font-semibold text-white">{category.title}</h3>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map(skill => (
                   <motion.div
                     key={skill.name}
-                    whileHover={{
-                      scale: 1.05,
-                      backgroundColor: 'rgba(255,255,255,0.03)',
-                      transition: { duration: 0.2, ease: "easeOut" }
-                    }}
-                    className="flex items-center gap-2 px-2.5 py-2 bg-zinc-950/50 border border-zinc-800/50 rounded-xl hover:border-zinc-700 transition-all group/skill overflow-hidden"
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.08)' }}
+                    className="liquid-glass rounded-full px-4 py-1.5 flex items-center gap-2 border-white/5 transition-colors cursor-default"
                   >
-                    <div className="relative flex items-center justify-center">
-                      {/* Brand-colored Glow */}
-                      <div
-                        className="absolute inset-0 blur-md opacity-0 group-hover/skill:opacity-100 transition-opacity duration-300 pointer-events-none"
-                        style={{ backgroundColor: skill.color, scale: 1.5, opacity: 0.1 }}
-                      />
-                      <motion.div
-                        whileHover={{
-                          filter: 'brightness(1.06) saturate(1.06)',
-                          transition: { duration: 0.2 }
-                        }}
-                        style={{
-                          color: skill.color,
-                          filter: `drop-shadow(0 0 8px ${skill.color}1A)` // ~10% opacity glow
-                        }}
-                      >
-                        <skill.icon size={18} />
-                      </motion.div>
-                    </div>
-                    <span className="text-xs font-semibold text-zinc-400 group-hover/skill:text-zinc-200 transition-colors truncate">
-                      {skill.name}
-                    </span>
+                    <skill.icon size={14} style={{ color: skill.color }} className="opacity-70" />
+                    <span className="text-xs font-medium text-white/60">{skill.name}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

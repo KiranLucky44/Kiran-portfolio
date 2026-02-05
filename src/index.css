@@ -1,49 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Apple Liquid Glass Tokens */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(40px) saturate(180%);
+
+  --aether-bg: #020202;
+  --accent-primary: #38bdf8;
+  --accent-secondary: #818cf8;
+}
+
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
-    @apply bg-zinc-950 text-zinc-50;
+    @apply bg-[#020202] text-zinc-400 antialiased selection:bg-sky-500/30 selection:text-white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
   }
 }
 
 @layer components {
-  .container {
-    @apply max-w-7xl mx-auto px-4;
+
+  /* Core Liquid Glass Surfaces */
+  .liquid-glass {
+    @apply bg-white/[0.03] backdrop-blur-[40px] border border-white/[0.08];
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 
+  .glass-card {
+    @apply liquid-glass rounded-[2.5rem] p-8 overflow-hidden transition-all duration-500;
+  }
+
+  .glass-card:hover {
+    @apply border-white/20 bg-white/[0.05];
+    box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  /* Typography System */
   .headline-1 {
-    @apply text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent;
+    @apply text-5xl md:text-8xl font-bold tracking-tighter text-white leading-[1.1];
   }
 
   .headline-2 {
-    @apply text-2xl md:text-3xl font-semibold bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent;
+    @apply text-3xl md:text-5xl font-bold tracking-tight text-white leading-tight;
   }
 
-  .nav-link {
-    @apply text-zinc-400 hover:text-white transition-colors duration-200 text-sm font-medium px-4 py-2 rounded-lg hover:bg-zinc-800/50;
-  }
-
+  /* Premium Buttons */
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200;
+    @apply inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold transition-all duration-300 active:scale-95;
   }
 
   .btn-primary {
-    @apply bg-sky-400 text-zinc-950 hover:bg-sky-300 active:bg-sky-400;
+    @apply bg-white text-black hover:bg-zinc-200;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   }
 
-  .btn-outline {
-    @apply border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white;
+  .btn-glass {
+    @apply liquid-glass text-white hover:bg-white/10;
   }
 
-  .card {
-    @apply bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/80 rounded-[2rem] shadow-xl p-8 transition-all duration-300;
+  /* Navigation Pills */
+  .nav-pill {
+    @apply relative px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium;
   }
+}
+
+/* Anti-Gravity Floating Keyframes */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+.anti-gravity {
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
 }

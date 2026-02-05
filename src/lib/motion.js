@@ -1,63 +1,43 @@
-/**
- * Premium Motion System Tokens & Variants
- * Inspired by Apple, Linear, and Vercel.
- */
-
-// Accessibility: Support for users who prefer reduced motion
-const isReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 export const TRANSITIONS = {
-    // Soft, intentional easing
-    ease: isReducedMotion ? 'linear' : [0.22, 1, 0.36, 1],
-    // Spring for interactive elements
-    spring: isReducedMotion ? { type: "tween", duration: 0.2 } : {
+    ease: [0.6, 0.01, -0.05, 0.95],
+    spring: {
         type: "spring",
-        stiffness: 260,
-        damping: 20
+        damping: 25,
+        stiffness: 150
     },
-    // Gentler spring for large UI moves
-    springGentle: isReducedMotion ? { type: "tween", duration: 0.4 } : {
+    springGentle: {
         type: "spring",
-        stiffness: 100,
-        damping: 20,
-        mass: 1
+        damping: 30,
+        stiffness: 100
+    },
+    float: {
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut"
     }
-};
-
-
-export const DURATIONS = {
-    fast: 0.2,
-    standard: 0.4,
-    slow: 0.6
-};
+}
 
 export const VARIANTS = {
     fadeIn: {
         initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 },
-        transition: { duration: DURATIONS.standard, ease: TRANSITIONS.ease }
+        animate: { opacity: 1, transition: { duration: 1.2, ease: TRANSITIONS.ease } }
     },
-
     revealUp: {
-        initial: { opacity: 0, y: 24 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: DURATIONS.slow, ease: TRANSITIONS.ease }
+        initial: { opacity: 0, y: 40 },
+        animate: { opacity: 1, y: 0, transition: { duration: 0.8, ease: TRANSITIONS.ease } }
     },
-
-    staggerContainer: (staggerChildren = 0.1, delayChildren = 0) => ({
+    staggerContainer: (staggerChildren = 0.1) => ({
+        initial: { opacity: 0 },
         animate: {
+            opacity: 1,
             transition: {
                 staggerChildren,
-                delayChildren
+                delayChildren: 0.2
             }
         }
     }),
-
-    // Hero specific
-    heroText: {
-        initial: { opacity: 0, y: 40 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.8, ease: TRANSITIONS.ease }
+    glassHover: {
+        initial: { scale: 1, backgroundColor: 'rgba(255, 255, 255, 0.03)' },
+        hover: { scale: 1.02, backgroundColor: 'rgba(255, 255, 255, 0.06)' }
     }
-};
+}

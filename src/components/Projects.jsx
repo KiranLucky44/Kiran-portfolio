@@ -29,92 +29,67 @@ const PROJECTS = [
   }
 ]
 
-import { TRANSITIONS, VARIANTS } from '../lib/motion'
-
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 relative border-b border-zinc-800">
+    <section id="projects" className="py-20 relative">
       <div className="container px-6">
         <motion.div
-          className="text-center mb-20"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={VARIANTS.revealUp}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">Featured Projects</h2>
-          <div className="h-1.5 w-20 bg-[#5AB4C8] mx-auto rounded-full" />
+          <h2 className="headline-1 mb-4">Crafting the <span className="text-white/40 italic">Digital</span> Forge</h2>
+          <p className="text-zinc-500 text-lg max-w-2xl mx-auto italic">A selection of my most ambitious architectural accomplishments.</p>
         </motion.div>
 
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl mx-auto"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={VARIANTS.staggerContainer(0.15)}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {PROJECTS.map((p, idx) => (
-            <motion.article
+            <motion.div
               key={p.title}
-              variants={VARIANTS.revealUp}
-              whileHover={{
-                y: -6,
-                transition: TRANSITIONS.spring
-              }}
-              className="group relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col hover:border-zinc-700/50 hover:shadow-[#5AB4C8]/5 transition-colors duration-500"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.8 }}
+              whileHover={{ y: -10 }}
+              className="glass-card !p-0 group perspective-1000"
             >
-              {/* Image Area */}
-              <div className="w-full h-52 relative overflow-hidden bg-zinc-800">
-                <motion.img
+              <div className="relative h-64 w-full overflow-hidden">
+                <img
                   src={p.image}
                   alt={p.title}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.8, ease: TRANSITIONS.ease }}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#020202] via-transparent to-transparent" />
 
-              {/* Content Area */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className="text-xl font-bold text-white leading-tight group-hover:text-[#5AB4C8] transition-colors">{p.title}</h3>
-                </div>
-
-                <p className="text-zinc-400 text-sm mb-6 leading-relaxed flex-grow">
-                  {p.desc}
-                </p>
-
-                {/* Tech Stack Pills */}
-                <div className="flex flex-wrap gap-2 mb-8">
+                {/* Holographic Tech Badges */}
+                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap gap-2">
                   {p.tech.map(t => (
-                    <span key={t} className="px-3 py-1 text-[10px] font-bold tracking-wider uppercase text-zinc-400 bg-zinc-800/50 rounded-lg border border-zinc-700/30 group-hover:border-[#5AB4C8]/20 transition-colors">
+                    <span key={t} className="liquid-glass px-3 py-1 rounded-full text-[10px] font-bold text-white/50 uppercase tracking-widest backdrop-blur-3xl border-white/20">
                       {t}
                     </span>
                   ))}
                 </div>
+              </div>
 
-                {/* Buttons */}
-                <div className="flex gap-3 mt-auto">
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-bold text-white bg-zinc-800/80 hover:bg-zinc-800 border border-zinc-700 rounded-xl transition-all shadow-lg"
-                  >
-                    <FaGithub size={16} /> Code
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-[12px] font-bold text-zinc-950 bg-[#5AB4C8] hover:bg-[#7ACDE1] rounded-xl transition-all shadow-lg shadow-[#5AB4C8]/20"
-                  >
-                    <FaExternalLinkAlt size={14} /> Live
-                  </motion.button>
+              <div className="p-10">
+                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{p.title}</h3>
+                <p className="text-zinc-500 leading-relaxed mb-8 h-20 overflow-hidden line-clamp-3">
+                  {p.desc}
+                </p>
+
+                <div className="flex gap-4">
+                  <a href="#" className="flex-1 btn btn-glass group">
+                    <FaGithub className="mr-2 opacity-50 group-hover:opacity-100" size={16} /> Code
+                  </a>
+                  <a href="#" className="flex-1 btn btn-primary">
+                    <FaExternalLinkAlt className="mr-2" size={12} /> Live
+                  </a>
                 </div>
               </div>
-            </motion.article>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

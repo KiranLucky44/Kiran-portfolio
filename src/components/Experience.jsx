@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { FaCalendarAlt, FaMapMarkerAlt, FaBuilding, FaGraduationCap, FaBook } from 'react-icons/fa'
+import { FaCalendarAlt, FaMapMarkerAlt, FaBuilding, FaGraduationCap } from 'react-icons/fa'
 
 const experiences = [
   {
@@ -54,146 +54,99 @@ const education = [
   }
 ]
 
-import { TRANSITIONS, VARIANTS } from '../lib/motion'
-
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 border-b border-zinc-800 relative isolate">
+    <section id="experience" className="py-20 relative">
       <div className="container px-6">
         <motion.div
-          className="text-center mb-20"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={VARIANTS.revealUp}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
-            Work <span className="text-[#5AB4C8]">Experience</span>
-          </h2>
-          <div className="h-1.5 w-20 bg-[#5AB4C8] mx-auto rounded-full" />
+          <h2 className="headline-2 mb-4">Chronicles of <span className="text-white/40">Growth</span></h2>
+          <p className="text-zinc-500 text-lg">My professional journey and academic foundation.</p>
         </motion.div>
 
-        <motion.div
-          className="max-w-4xl mx-auto space-y-10"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={VARIANTS.staggerContainer(0.2)}
-        >
-          {experiences.map((item) => (
-            <motion.div
-              key={item.id}
-              variants={VARIANTS.revealUp}
-              whileHover={{ x: 4 }}
-              transition={TRANSITIONS.springGentle}
-              className="group relative bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/80 rounded-[2.5rem] p-6 md:p-8 hover:border-zinc-700/50 hover:bg-zinc-900 transition-all duration-500"
-            >
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#5AB4C8]/0 group-hover:bg-[#5AB4C8]/50 transition-all rounded-l-3xl" />
-
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-                <div>
-                  <h3 className="text-xl font-bold text-[#5AB4C8] mb-2 flex items-center gap-2">
-                    <FaBuilding className="text-zinc-500 group-hover:text-[#5AB4C8] transition-colors" size={16} /> {item.company}
-                  </h3>
-                  <h4 className="text-lg font-semibold text-white">
-                    {item.title}
-                  </h4>
-                </div>
-
-                <div className="flex flex-col items-start md:items-end gap-1.5">
-                  <div className="inline-flex items-center gap-2 text-zinc-400 text-sm font-mono bg-zinc-800/50 px-3 py-1 rounded-full border border-zinc-700/30">
-                    <FaCalendarAlt size={12} /> {item.period}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Experience Column */}
+          <div className="space-y-8">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-white/30 font-bold mb-8 flex items-center gap-4">
+              Professional <span className="h-px bg-white/10 flex-grow" />
+            </h3>
+            {experiences.map((exp, idx) => (
+              <motion.div
+                key={exp.id}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ scale: 1.01 }}
+                className="glass-card !p-6 md:!p-10"
+              >
+                <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
+                  <div>
+                    <h4 className="text-xl font-bold text-white mb-1">{exp.title}</h4>
+                    <div className="text-sky-400 font-medium">{exp.company}</div>
                   </div>
-                  <div className="inline-flex items-center gap-2 text-zinc-500 text-sm">
-                    <FaMapMarkerAlt size={12} /> {item.location}
+                  <div className="liquid-glass px-3 py-1 rounded-full text-[10px] font-bold text-white/50 uppercase tracking-wider">
+                    {exp.period}
                   </div>
                 </div>
-              </div>
+                <ul className="space-y-4">
+                  {exp.bullets.map((bullet, i) => (
+                    <li key={i} className="text-sm text-zinc-400 flex items-start gap-3 leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-sky-500/50 mt-1.5 shrink-0" />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
 
-              <ul className="space-y-4">
-                {item.bullets.map((bullet, i) => (
-                  <li key={i} className="flex items-start gap-4 text-zinc-400 group-hover:text-zinc-300 transition-colors leading-relaxed text-[15px]">
-                    <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#5AB4C8]/60 shrink-0" />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Education Section */}
-        <div id="education" className="scroll-mt-32">
-          <motion.div
-            className="text-center mb-20 mt-40"
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={VARIANTS.revealUp}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
-              Education <span className="text-[#5AB4C8]">&</span> Learning
-            </h2>
-            <div className="h-1.5 w-20 bg-[#5AB4C8] mx-auto rounded-full" />
-          </motion.div>
-        </div>
-
-        <motion.div
-          className="max-w-4xl mx-auto space-y-10"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={VARIANTS.staggerContainer(0.2)}
-        >
-          {education.map((item) => (
-            <motion.div
-              key={item.id}
-              variants={VARIANTS.revealUp}
-              whileHover={{ x: 4 }}
-              transition={TRANSITIONS.springGentle}
-              className="group relative bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/80 rounded-[2.5rem] p-6 md:p-8 hover:border-zinc-700/50 hover:bg-zinc-900 transition-all duration-500"
-            >
-              <div className="absolute top-0 left-0 w-1 h-full bg-[#5AB4C8]/0 group-hover:bg-[#5AB4C8]/50 transition-all rounded-l-3xl" />
-
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-                <div>
-                  <h3 className="text-xl font-bold text-[#5AB4C8] mb-2 flex items-center gap-2">
-                    <FaGraduationCap className="text-zinc-500 group-hover:text-[#5AB4C8] transition-colors" size={20} /> {item.institution}
-                  </h3>
-                  <h4 className="text-lg font-semibold text-white">
-                    {item.degree}
-                  </h4>
-                </div>
-
-                <div className="flex flex-col items-start md:items-end gap-1.5">
-                  <div className="inline-flex items-center gap-2 text-zinc-400 text-sm font-mono bg-zinc-800/50 px-3 py-1 rounded-full border border-zinc-700/30">
-                    <FaCalendarAlt size={12} /> {item.period}
+          {/* Education Column */}
+          <div className="space-y-8">
+            <h3 className="text-xs uppercase tracking-[0.3em] text-white/30 font-bold mb-8 flex items-center gap-4">
+              Education <span className="h-px bg-white/10 flex-grow" />
+            </h3>
+            {education.map((edu, idx) => (
+              <motion.div
+                key={edu.id}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                className="liquid-glass rounded-[2rem] p-8"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center text-white/30">
+                    <FaGraduationCap size={24} />
                   </div>
-                  <div className="inline-flex items-center gap-2 text-zinc-500 text-sm">
-                    <FaMapMarkerAlt size={12} /> {item.location}
+                  <div>
+                    <h4 className="text-lg font-bold text-white">{edu.institution}</h4>
+                    <div className="text-sm text-zinc-500">{edu.degree}</div>
                   </div>
                 </div>
-              </div>
-
-              <div className="space-y-6">
-                <p className="text-zinc-300 font-medium text-lg border-l-2 border-[#5AB4C8]/30 pl-4">{item.description}</p>
-
-                <div>
-                  <h5 className="text-[11px] font-bold text-zinc-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                    <FaBook size={10} /> Relevant Coursework
-                  </h5>
-                  <div className="flex flex-wrap gap-2.5">
-                    {item.courses.map(course => (
-                      <span key={course} className="px-4 py-1.5 bg-zinc-800/50 text-zinc-400 text-xs font-medium rounded-lg border border-zinc-700/30 group-hover:border-[#5AB4C8]/20 transition-colors">
+                <div className="flex flex-col gap-4">
+                  <p className="text-zinc-400 font-medium italic">{edu.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {edu.courses.map(course => (
+                      <span key={course} className="px-3 py-1 rounded-lg bg-white/5 text-[10px] font-bold text-white/40 uppercase tracking-wider">
                         {course}
                       </span>
                     ))}
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                <div className="flex items-center justify-between text-xs text-zinc-500 font-medium mt-8 pt-6 border-t border-white/5">
+                  <span className="flex items-center gap-2"><FaCalendarAlt size={10} /> {edu.period}</span>
+                  <span className="flex items-center gap-2"><FaMapMarkerAlt size={10} /> {edu.location}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

@@ -1,30 +1,24 @@
 import React from 'react'
+import './index.css'
+import { motion } from 'framer-motion'
+import GlowBackground from './components/GlowBackground'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Experience from './components/Experience'
 import Projects from './components/Projects'
-import Contact from './components/Contact'
 import Certifications from './components/Certifications'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
-import GlowBackground from './components/GlowBackground'
-import './index.css'
-
-import { motion } from 'framer-motion'
 import { VARIANTS } from './lib/motion'
 
 export default function App() {
-  console.log('App.jsx render')
   return (
-    <div className="relative isolate overflow-hidden">
+    <div className="relative isolate overflow-hidden bg-[#020202]">
       <Header />
       <GlowBackground />
-      <motion.div
-        initial="initial"
-        animate="animate"
-        variants={VARIANTS.fadeIn}
-      >
+      <div className="relative z-10">
         <Hero />
         <main>
           <About />
@@ -34,8 +28,8 @@ export default function App() {
           <Certifications />
           <Contact />
         </main>
-      </motion.div>
-      <Footer />
+        <Footer />
+      </div>
     </div>
   )
 }

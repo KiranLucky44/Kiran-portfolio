@@ -1,62 +1,63 @@
 import React from 'react'
-import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa'
-
 import { motion } from 'framer-motion'
-import { TRANSITIONS, VARIANTS } from '../lib/motion'
+import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 relative overflow-hidden bg-zinc-950">
-      <div className="container px-6">
+    <section id="contact" className="py-20 relative overflow-hidden">
+      <div className="container relative z-10 px-6">
         <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={VARIANTS.revealUp}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">Get In Touch</h2>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto font-medium">
-            Let's build something <span className="text-[#5AB4C8]">extraordinary</span> together.
-          </p>
+          <h2 className="headline-1 mb-8">Let's Build the <br /><span className="text-white/40 italic">Future</span></h2>
+          <p className="text-zinc-500 text-lg max-w-xl mx-auto italic">Let's build something extraordinary together. I'm open to new opportunities and collaborations.</p>
         </motion.div>
 
         <motion.div
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={VARIANTS.revealUp}
-          className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 md:p-12 shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="glass-card max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 !p-12 md:!p-20"
         >
-          <div>
-            <p className="text-zinc-400 mb-6 leading-relaxed">Reach out via email or phone. I'm open to new opportunities and collaborations.</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <a className="flex items-center gap-3 px-4 py-2 bg-zinc-800/50 rounded-lg border border-zinc-700/50 hover:bg-zinc-800 hover:border-zinc-500 transition-all group" href="mailto:kirankumarc477@gmail.com">
-                <FaEnvelope className="text-zinc-400 group-hover:text-[#5AB4C8] transition-colors" />
-                <span className="text-sm font-medium text-zinc-300 group-hover:text-white">kirankumarc477@gmail.com</span>
+          <div className="flex-grow space-y-12">
+            <div className="flex flex-col gap-6">
+              <a href="mailto:kirankumarc477@gmail.com" className="group">
+                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-2">Primary Portal</span>
+                <span className="text-2xl md:text-3xl font-bold text-white group-hover:text-white/60 transition-colors flex items-center gap-4">
+                  <FaEnvelope size={20} className="text-white/20" /> kirankumarc477@gmail.com
+                </span>
               </a>
-              <div className="flex items-center gap-3 px-4 py-2 bg-zinc-800/50 rounded-lg border border-zinc-700/50 hover:bg-zinc-800 transition-all cursor-default">
-                <FaPhone className="text-zinc-400" />
-                <span className="text-sm font-medium text-zinc-300">203-290-8063</span>
+              <div className="group">
+                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-2">Direct Terminal</span>
+                <span className="text-2xl md:text-3xl font-bold text-white flex items-center gap-4">
+                  <FaPhone size={20} className="text-white/20" /> 203-290-8063
+                </span>
               </div>
             </div>
 
-            <div className="flex gap-4">
-              <a className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm font-medium hover:underline decoration-[#5AB4C8]/30 underline-offset-4" href="https://github.com/KiranLucky44/" target="_blank" rel="noopener noreferrer">
-                <FaGithub size={18} /> GitHub
+            <div className="flex gap-8">
+              <a href="https://github.com/KiranLucky44/" target="_blank" rel="noopener noreferrer" className="liquid-glass p-4 rounded-2xl text-white/40 hover:text-white transition-colors">
+                <FaGithub size={24} />
               </a>
-              <a className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors text-sm font-medium hover:underline decoration-blue-500/30 underline-offset-4" href="https://www.linkedin.com/in/kiran-kumar-977202182" target="_blank" rel="noopener noreferrer">
-                <FaLinkedin size={18} /> LinkedIn
+              <a href="https://www.linkedin.com/in/kiran-kumar-977202182" target="_blank" rel="noopener noreferrer" className="liquid-glass p-4 rounded-2xl text-white/40 hover:text-white transition-colors">
+                <FaLinkedin size={24} />
               </a>
             </div>
           </div>
 
-          <div className="flex justify-end">
-            <a className="px-5 py-3 bg-white text-black rounded-md font-semibold" href="/resume.pdf" download>Download Resume</a>
+          <div className="flex-shrink-0">
+            <a href="/resume.pdf" download className="btn btn-primary !px-12 !py-5 !text-lg rounded-3xl">
+              Secure the CV
+            </a>
           </div>
         </motion.div>
       </div>
+
+      {/* Decorative Focal Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] blur-[150px] rounded-full -z-10" />
     </section>
   )
 }
