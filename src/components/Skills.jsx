@@ -12,8 +12,8 @@ const SKILL_CATEGORIES = [
     title: 'Languages',
     icon: FaCode,
     skills: [
-      { name: 'Java', icon: FaJava, color: '#ED8B00' },
-      { name: 'JavaScript', icon: FaJs, color: '#F7DF1E' },
+      { name: 'Java', icon: FaJava, color: '#FF9800' },
+      { name: 'JavaScript', icon: FaJs, color: '#FACC15' },
       { name: 'TypeScript', icon: FaCode, color: '#3178C6' },
       { name: 'Python', icon: FaPython, color: '#3776AB' },
       { name: 'C/C++', icon: FaCode, color: '#00599C' }
@@ -25,7 +25,7 @@ const SKILL_CATEGORIES = [
     skills: [
       { name: 'React.js', icon: FaReact, color: '#61DAFB' },
       { name: 'Redux', icon: FaLayerGroup, color: '#764ABC' },
-      { name: 'Next.js', icon: FaReact, color: '#FFFFFF' },
+      { name: 'Next.js', icon: FaReact, color: '#F8FAFC' },
       { name: 'Angular', icon: FaAngular, color: '#DD0031' }
     ]
   },
@@ -33,11 +33,11 @@ const SKILL_CATEGORIES = [
     title: 'Backend',
     icon: FaServer,
     skills: [
-      { name: 'Spring Boot', icon: FaLeaf, color: '#6DB33F' },
-      { name: 'Microservices', icon: FaNetworkWired, color: '#64748B' },
-      { name: 'Hibernate', icon: FaDatabase, color: '#59666C' },
-      { name: 'REST APIs', icon: FaGlobe, color: '#38BDF8' },
-      { name: 'Express', icon: FaServer, color: '#FFFFFF' }
+      { name: 'Spring Boot', icon: FaLeaf, color: '#4ADE80' },
+      { name: 'Microservices', icon: FaNetworkWired, color: '#94A3B8' },
+      { name: 'Hibernate', icon: FaDatabase, color: '#788896' },
+      { name: 'REST APIs', icon: FaGlobe, color: '#0EA5E9' },
+      { name: 'Express', icon: FaServer, color: '#F8FAFC' }
     ]
   },
   {
@@ -57,8 +57,8 @@ const SKILL_CATEGORIES = [
     title: 'AI & ML',
     icon: FaBrain,
     skills: [
-      { name: 'LangChain', icon: FaLink, color: '#22C55E' },
-      { name: 'Hugging Face', icon: FaRobot, color: '#FFD21E' },
+      { name: 'LangChain', icon: FaLink, color: '#4ADE80' },
+      { name: 'Hugging Face', icon: FaRobot, color: '#FACC15' },
       { name: 'OpenAI API', icon: FaBrain, color: '#10A37F' }
     ]
   },
@@ -66,8 +66,8 @@ const SKILL_CATEGORIES = [
     title: 'Databases & Tools',
     icon: FaTools,
     skills: [
-      { name: 'MySQL', icon: FaDatabase, color: '#4479A1' },
-      { name: 'PostgreSQL', icon: FaDatabase, color: '#336791' },
+      { name: 'MySQL', icon: FaDatabase, color: '#3178C6' },
+      { name: 'PostgreSQL', icon: FaDatabase, color: '#38BDF8' },
       { name: 'MongoDB', icon: FaDatabase, color: '#47A248' },
       { name: 'Cassandra', icon: FaDatabase, color: '#1287B1' },
       { name: 'Git', icon: FaGitAlt, color: '#F05032' },
@@ -88,7 +88,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-16 text-center lg:text-left"
         >
-          <h2 className="headline-2 mb-4">Mastering the <span className="text-white/40">Continuum</span></h2>
+          <h2 className="headline-2 mb-4">Mastering the <span className="text-white/40 italic">Continuum</span></h2>
           <p className="text-zinc-500 max-w-lg text-lg text-center lg:text-left">A curated selection of tools and technologies I use to bring ideas to life.</p>
         </motion.div>
 
@@ -116,8 +116,8 @@ export default function Skills() {
                     whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.08)' }}
                     className="liquid-glass rounded-full px-4 py-1.5 flex items-center gap-2 border-white/5 transition-colors cursor-default"
                   >
-                    <skill.icon size={14} style={{ color: skill.color }} className="opacity-70" />
-                    <span className="text-xs font-medium text-white/60">{skill.name}</span>
+                    <skill.icon size={14} style={{ color: skill.color }} />
+                    <span className="text-xs font-medium text-white/90">{skill.name}</span>
                   </motion.div>
                 ))}
               </div>

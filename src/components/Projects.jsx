@@ -46,7 +46,7 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {PROJECTS.map((p, idx) => (
             <motion.div
-              key={p.title}
+              key={idx}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -94,4 +94,3 @@ export default function Projects() {
     </section>
   )
 }
-

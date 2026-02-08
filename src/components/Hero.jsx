@@ -10,10 +10,10 @@ export default function Hero() {
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 150])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const opacity = useTransform(scrollYProgress, [0, 0.9], [1, 0])
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section id="home" ref={containerRef} className="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden">
       <div className="container relative z-10 px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Left Content (Text) */}
@@ -22,9 +22,13 @@ export default function Hero() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-start"
+          className="flex flex-col items-start mt-2 md:mt-0"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-8 border-white/10">
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-8 border-white/10 flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
             Available for Work
           </div>
 

@@ -17,9 +17,15 @@ export default function Header() {
     const sections = document.querySelectorAll('section[id]')
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) setActive(e.target.id)
+        if (e.isIntersecting) {
+          setActive(e.target.id)
+        }
       })
-    }, { root: null, threshold: 0.5 })
+    }, {
+      root: null,
+      threshold: 0,
+      rootMargin: '-20% 0px -40% 0px'
+    })
     sections.forEach(s => obs.observe(s))
     return () => obs.disconnect()
   }, [])
@@ -27,9 +33,9 @@ export default function Header() {
   const navItems = [
     { id: 'home', label: 'Home', href: '#' },
     { id: 'about', label: 'About', href: '#about' },
-    { id: 'experience', label: 'Experience', href: '#experience' },
-    { id: 'education', label: 'Education', href: '#education' },
     { id: 'skills', label: 'Skills', href: '#skills' },
+    { id: 'experience', label: 'Experience', href: '#experience' },
+    { id: 'education', label: 'Education', href: '#experience' },
     { id: 'projects', label: 'Projects', href: '#projects' },
     { id: 'certifications', label: 'Certifications', href: '#certifications' },
   ]
@@ -40,7 +46,7 @@ export default function Header() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: 'spring', damping: 20, stiffness: 100 }}
-        className={`liquid-glass rounded-full px-6 py-2 flex items-center justify-between transition-all duration-500 ${scrolled ? 'py-2 bg-black/40' : 'py-3'}`}
+        className={`liquid-glass rounded-full px-6 py-1.5 flex items-center justify-between transition-all duration-500 ${scrolled ? 'py-1.5 bg-black/40' : 'py-2'}`}
       >
         <div className="flex items-center gap-2">
           <div className="text-xl font-bold tracking-tighter text-white">KC</div>
@@ -54,7 +60,7 @@ export default function Header() {
               href={item.href}
               className={`nav-pill ${active === item.id ? 'text-white' : 'text-zinc-400 hover:text-white'}`}
             >
-              {active === item.id && (
+              {(active === item.id || (active === 'experience' && item.id === 'education')) && (
                 <motion.div
                   layoutId="active-pill"
                   className="absolute inset-0 bg-white/10 rounded-full -z-10"
@@ -68,7 +74,7 @@ export default function Header() {
 
         <a
           href="#contact"
-          className="hidden md:block btn-primary !px-5 !py-2 !text-xs rounded-full"
+          className="hidden md:block btn-primary !px-5 !py-1.5 !text-xs rounded-full"
         >
           Contact Me
         </a>
@@ -91,7 +97,7 @@ export default function Header() {
             {navItems.map(item => (
               <a
                 key={item.id}
-                href={item.href}
+                href={item.id === 'education' ? '#experience' : item.href}
                 onClick={() => setOpen(false)}
                 className={`text-lg font-medium ${active === item.id ? 'text-white' : 'text-zinc-500'}`}
               >
