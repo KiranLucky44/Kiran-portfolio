@@ -22,9 +22,9 @@ export default function Hero() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col items-start mt-2 md:mt-0"
+          className="flex flex-col items-start mt-2 md:mt-0 pb-12"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-4 border-white/10 flex items-center gap-2">
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-3 border-white/10 flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -32,23 +32,23 @@ export default function Hero() {
             Available for Work
           </div>
 
-          <h1 className="headline-1 mb-8">
+          <h1 className="headline-1 mb-4 leading-[1.05] tracking-tight">
             Design <br />
             <span className="text-white/40 italic">Meets</span> <br />
             Engineering
           </h1>
 
-          <div className="mb-6">
+          <div className="mb-2">
             <h2 className="text-2xl md:text-3xl font-medium text-white-400 leading-tight">
               Kiran Kumar <span className="text-white">Chinnakkagari</span>
             </h2>
-            <p className="text-zinc-500 text-lg mt-4">
+            <p className="text-zinc-500 text-base mt-2 leading-relaxed">
               Building Scalable Modern Full Stack Applications <br />
               <span className="text-white font-bold">Software Engineer • AI/LLM Enthusiast</span>
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-3 mt-4">
             <a href="/resume.pdf" download className="btn btn-primary">
               <FaDownload className="mr-2" size={14} /> Download CV
             </a>
@@ -66,7 +66,7 @@ export default function Hero() {
               rotate: [-1, 1, -1]
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-80 h-[450px] md:w-[400px] md:h-[550px] group"
+            className="relative mb-4 w-72 h-[420px] md:w-[360px] md:h-[500px] group"
           >
             {/* Main Glass Card for Image */}
             <div className="glass-card w-full h-full p-0 relative overflow-hidden">
