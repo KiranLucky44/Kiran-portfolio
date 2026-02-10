@@ -56,19 +56,19 @@ const education = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 relative">
+    <section id="experience" className="pt-10 pb-10 relative scroll-mt-16">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
-          <h2 className="headline-2 mb-4">Chronicles of <span className="text-white/40 italic">Growth</span></h2>
-          <p className="text-zinc-500 text-lg">My professional journey and academic foundation.</p>
+          <h2 className="headline-1 mb-4">Chronicles <span className="text-white/40 italic">of</span> Growth</h2>
+          <p className="text-zinc-500 text-lg max-w-2xl mx-auto italic">My professional journey and academic foundation.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Experience Column */}
           <div className="space-y-8">
             <h3 className="text-xs uppercase tracking-[0.3em] text-white/30 font-bold mb-8 flex items-center gap-4">
@@ -126,7 +126,7 @@ export default function Experience() {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold text-white">{edu.institution}</h4>
-                    <div className="text-sm text-zinc-500">{edu.degree}</div>
+                    <div className="text-sm text-sky-400">{edu.degree}</div>
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">

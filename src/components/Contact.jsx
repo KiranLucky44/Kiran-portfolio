@@ -4,7 +4,7 @@ import { FaEnvelope, FaPhone, FaGithub, FaLinkedin } from 'react-icons/fa'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
+    <section id="contact" className="pt-10 pb-0 relative overflow-hidden">
       <div className="container relative z-10 px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,36 +20,38 @@ export default function Contact() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="glass-card max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 !p-12 md:!p-20"
+          className="glass-card max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 !p-10"
         >
-          <div className="flex-grow space-y-12">
-            <div className="flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-8 w-full md:w-auto">
+            <div className="flex flex-col gap-4 items-center md:items-start text-center md:text-left">
               <a href="mailto:kirankumarc477@gmail.com" className="group">
-                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-2">Primary Portal</span>
-                <span className="text-2xl md:text-3xl font-bold text-white group-hover:text-white/60 transition-colors flex items-center gap-4">
-                  <FaEnvelope size={20} className="text-white/20" /> kirankumarc477@gmail.com
+                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-1">Primary Portal</span>
+                <span className="text-lg font-bold text-white group-hover:text-white/60 transition-colors flex items-center gap-3 justify-center md:justify-start">
+                  <FaEnvelope size={16} className="text-white/20" /> kirankumarc477@gmail.com
                 </span>
               </a>
-              <div className="group">
-                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-2">Direct Terminal</span>
-                <span className="text-2xl md:text-3xl font-bold text-white flex items-center gap-4">
-                  <FaPhone size={20} className="text-white/20" /> 203-290-8063
+              <a href="tel:2032908063" className="group">
+                <span className="block text-[10px] font-bold text-zinc-600 uppercase tracking-widest mb-1">Direct Terminal</span>
+                <span className="text-lg font-bold text-white group-hover:text-white/60 transition-colors flex items-center gap-3 justify-center md:justify-start">
+                  <FaPhone size={16} className="text-white/20" /> 203-290-8063
                 </span>
-              </div>
+              </a>
             </div>
 
-            <div className="flex gap-8">
-              <a href="https://github.com/KiranLucky44/" target="_blank" rel="noopener noreferrer" className="liquid-glass p-4 rounded-2xl text-white/40 hover:text-white transition-colors">
-                <FaGithub size={24} />
+            <div className="h-px w-full md:w-px md:h-16 bg-white/10" />
+
+            <div className="flex gap-4">
+              <a href="https://github.com/KiranLucky44/" target="_blank" rel="noopener noreferrer" className="liquid-glass p-3 rounded-xl text-white/40 hover:text-white transition-colors">
+                <FaGithub size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/kiran-kumar-977202182" target="_blank" rel="noopener noreferrer" className="liquid-glass p-4 rounded-2xl text-white/40 hover:text-white transition-colors">
-                <FaLinkedin size={24} />
+              <a href="https://www.linkedin.com/in/kiran-kumar-977202182" target="_blank" rel="noopener noreferrer" className="liquid-glass p-3 rounded-xl text-white/40 hover:text-white transition-colors">
+                <FaLinkedin size={20} />
               </a>
             </div>
           </div>
 
           <div className="flex-shrink-0">
-            <a href="/resume.pdf" download className="btn btn-primary !px-12 !py-5 !text-lg rounded-3xl">
+            <a href="/resume.pdf" download className="btn btn-primary !px-8 !py-3 !text-sm rounded-xl whitespace-nowrap">
               Secure the CV
             </a>
           </div>

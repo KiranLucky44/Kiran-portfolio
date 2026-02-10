@@ -4,8 +4,10 @@ import {
   FaCode, FaLaptopCode, FaServer, FaCloud, FaBrain, FaTools,
   FaJava, FaJs, FaPython, FaReact, FaAngular, FaAws, FaDocker, FaJenkins,
   FaGitAlt, FaJira, FaNetworkWired, FaGlobe, FaSync, FaLink, FaDatabase,
-  FaLeaf, FaProjectDiagram, FaShip, FaCogs, FaRobot, FaPaperPlane, FaLayerGroup
+  FaLeaf, FaProjectDiagram, FaShip, FaCogs, FaRobot, FaPaperPlane, FaLayerGroup,
+  FaMicrochip, FaBolt, FaSearch
 } from 'react-icons/fa'
+import { SiTailwindcss } from 'react-icons/si'
 
 const SKILL_CATEGORIES = [
   {
@@ -26,7 +28,8 @@ const SKILL_CATEGORIES = [
       { name: 'React.js', icon: FaReact, color: '#61DAFB' },
       { name: 'Redux', icon: FaLayerGroup, color: '#764ABC' },
       { name: 'Next.js', icon: FaReact, color: '#F8FAFC' },
-      { name: 'Angular', icon: FaAngular, color: '#DD0031' }
+      { name: 'Angular', icon: FaAngular, color: '#DD0031' },
+      { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38B2AC' }
     ]
   },
   {
@@ -59,7 +62,10 @@ const SKILL_CATEGORIES = [
     skills: [
       { name: 'LangChain', icon: FaLink, color: '#4ADE80' },
       { name: 'Hugging Face', icon: FaRobot, color: '#FACC15' },
-      { name: 'OpenAI API', icon: FaBrain, color: '#10A37F' }
+      { name: 'OpenAI API', icon: FaBrain, color: '#10A37F' },
+      { name: 'LLM', icon: FaMicrochip, color: '#A020F0' },
+      { name: 'VectorDB', icon: FaDatabase, color: '#00C853' },
+      { name: 'FAISS', icon: FaBolt, color: '#FFD600' }
     ]
   },
   {
@@ -80,7 +86,7 @@ const SKILL_CATEGORIES = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 relative">
+    <section id="skills" className="pt-10 pb-10 relative scroll-mt-20">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -88,7 +94,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mb-16 text-center lg:text-left"
         >
-          <h2 className="headline-2 mb-4">Mastering the <span className="text-white/40 italic">Continuum</span></h2>
+          <h2 className="headline-2 mb-4">Skills Across <span className="text-white/40 italic">theStack</span></h2>
           <p className="text-zinc-500 max-w-lg text-lg text-center lg:text-left">A curated selection of tools and technologies I use to bring ideas to life.</p>
         </motion.div>
 

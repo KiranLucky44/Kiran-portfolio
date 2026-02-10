@@ -39,7 +39,7 @@ export default function GlowBackground() {
                 style={{
                     bottom: '-20%',
                     right: '-10%',
-                    background: 'radial-gradient(circle, rgba(129, 140, 248, 0.1) 0%, rgba(129, 140, 248, 0) 70%)'
+                    background: 'radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0) 70%)'
                 }}
                 animate={{
                     x: [30, -30, 30],

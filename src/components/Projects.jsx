@@ -61,7 +61,7 @@ export default function Projects() {
   }, [currentIndex])
 
   return (
-    <section id="projects" ref={sectionRef} className="py-20 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="pt-10 pb-20 relative overflow-hidden scroll-mt-16">
       <div className="container px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

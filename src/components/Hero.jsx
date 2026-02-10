@@ -24,7 +24,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex flex-col items-start mt-2 md:mt-0"
         >
-          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-8 border-white/10 flex items-center gap-2">
+          <div className="liquid-glass px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-4 border-white/10 flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -38,13 +38,13 @@ export default function Hero() {
             Engineering
           </h1>
 
-          <div className="mb-10">
-            <h2 className="text-2xl md:text-3xl font-medium text-zinc-400 leading-tight">
+          <div className="mb-6">
+            <h2 className="text-2xl md:text-3xl font-medium text-white-400 leading-tight">
               Kiran Kumar <span className="text-white">Chinnakkagari</span>
             </h2>
             <p className="text-zinc-500 text-lg mt-4">
               Building Scalable Modern Full Stack Applications <br />
-              <span className="text-zinc-600">Software Engineer • AI/LLM Enthusiast</span>
+              <span className="text-white font-bold">Software Engineer • AI/LLM Enthusiast</span>
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export default function Hero() {
       {/* Parallax Background Elements */}
       <motion.div
         style={{ y: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
-        className="absolute top-1/4 right-0 w-96 h-96 bg-indigo-500/5 blur-[120px] rounded-full -z-10"
+        className="absolute top-1/4 right-0 w-96 h-96 bg-sky-500/5 blur-[120px] rounded-full -z-10"
       />
     </section>
   )

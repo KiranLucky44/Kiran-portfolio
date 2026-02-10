@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className="py-20 relative overflow-hidden">
+    <footer className="py-10 relative overflow-hidden">
       <div className="container px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="text-center md:text-left">
-            <h4 className="text-xl font-bold text-white mb-2">Let's work together today!</h4>
+            <h4 className="text-xl font-bold text-sky-400 mb-2">Let's work together today!</h4>
             <p className="text-zinc-500">Start a project or say hi — I'll get back soon.</p>
           </div>
 
